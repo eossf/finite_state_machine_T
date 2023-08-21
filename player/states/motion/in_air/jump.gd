@@ -1,19 +1,15 @@
 extends "../motion.gd"
 
 @export var base_max_horizontal_speed: float = 400.0
-
 @export var air_acceleration: float = 1000.0
 @export var air_deceleration: float = 2000.0
 @export var air_steering_power: float = 50.0
-
 @export var gravity: float = 1600.0
 
 var enter_velocity = Vector2()
-
 var max_horizontal_speed = 0.0
 var horizontal_speed = 0.0
 var horizontal_velocity = Vector2()
-
 var vertical_speed = 0.0
 var height = 0.0
 
@@ -24,7 +20,6 @@ func initialize(speed, velocity):
 	else:
 		max_horizontal_speed = base_max_horizontal_speed
 	enter_velocity = velocity
-
 
 func enter():
 	var input_direction = get_input_direction()
@@ -38,7 +33,6 @@ func enter():
 
 	owner.get_node(^"AnimationPlayer").play("idle")
 
-
 func update(delta):
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
@@ -47,7 +41,6 @@ func update(delta):
 	animate_jump_height(delta)
 	if height <= 0.0:
 		emit_signal("finished", "previous")
-
 
 func move_horizontally(delta, direction):
 	if direction:
@@ -62,7 +55,6 @@ func move_horizontally(delta, direction):
 
 	owner.velocity = horizontal_velocity
 	owner.move_and_slide()
-
 
 func animate_jump_height(delta):
 	vertical_speed -= gravity * delta

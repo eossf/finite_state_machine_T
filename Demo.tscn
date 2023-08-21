@@ -36,7 +36,7 @@ _data = {
 position = Vector2(640, 400)
 
 [node name="StateMachine" parent="Player" index="0"]
-start_state = NodePath("Idle")
+start_state = NodePath("Jump")
 
 [node name="AnimationPlayer" parent="Player" index="1"]
 libraries = {

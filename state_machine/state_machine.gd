@@ -11,8 +11,8 @@ signal state_changed(current_state)
 # from this state machine interface. If you don't, the game will default to
 # the first state in the state machine's children.
 @export var start_state: NodePath
-var states_map = {}
 
+var states_map = {}
 var states_stack = []
 var current_state = null
 var _active = false:
@@ -29,13 +29,11 @@ func _enter_tree():
 			printerr(err)
 	initialize(start_state)
 
-
-func initialize(initial_state):
+func initialize(initial_state:NodePath):
 	_active = true
 	states_stack.push_front(get_node(initial_state))
 	current_state = states_stack[0]
 	current_state.enter()
-
 
 func set_active(value):
 	set_physics_process(value)
@@ -44,20 +42,16 @@ func set_active(value):
 		states_stack = []
 		current_state = null
 
-
 func _unhandled_input(event):
 	current_state.handle_input(event)
 
-
 func _physics_process(delta):
 	current_state.update(delta)
-
 
 func _on_animation_finished(anim_name):
 	if not _active:
 		return
 	current_state._on_animation_finished(anim_name)
-
 
 func _change_state(state_name):
 	if not _active:
@@ -66,6 +60,8 @@ func _change_state(state_name):
 
 	if state_name == "previous":
 		states_stack.pop_front()
+		if states_stack.size() == 0:
+			states_stack.push_front(states_map["idle"])
 	else:
 		states_stack[0] = states_map[state_name]
 
