@@ -1,0 +1,16 @@
+.import
+logs/
+.godot/
+
+# files & folders in general
+.cache*
+.env*
+.devcontainer*
+
+# files type
+*.log
+*.crt
+*.key
+*.csr
+*.bak
+*.pem
