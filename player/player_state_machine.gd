@@ -33,4 +33,9 @@ func _unhandled_input(event):
 			return
 		_change_state("attack")
 		return
+
+	if event.is_action_pressed("jump"):
+		if current_state in [jump]:
+			return
+
 	current_state.handle_input(event)
