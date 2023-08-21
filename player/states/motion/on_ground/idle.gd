@@ -1,12 +1,12 @@
-extends "on_ground.gd"
+extends "../motion.gd"
+
+func handle_input(event):
+	if event.is_action_pressed("jump"):
+		emit_signal("finished", "jump")
+	return super.handle_input(event)
 
 func enter():
 	owner.get_node(^"AnimationPlayer").play("idle")
-
-
-func handle_input(event):
-	return super.handle_input(event)
-
 
 func update(_delta):
 	var input_direction = get_input_direction()
