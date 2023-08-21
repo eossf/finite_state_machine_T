@@ -15,7 +15,6 @@ func _ready():
 		"attack": attack,
 	}
 
-
 func _change_state(state_name):
 	# The base state_machine interface this node extends does most of the work.
 	if not _active:
@@ -25,7 +24,6 @@ func _change_state(state_name):
 	if state_name == "jump" and current_state == move:
 		jump.initialize(move.speed, move.velocity)
 	super._change_state(state_name)
-
 
 func _unhandled_input(event):
 	# Here we only handle input that can interrupt states, attacking in this case,
